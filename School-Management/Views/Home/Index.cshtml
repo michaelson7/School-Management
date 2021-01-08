@@ -2,7 +2,185 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome Update Test</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+
+
+<div class="section mt-3">
+    <div class="bg-dark p-3 roundCorder">
+        <h4>Dash</h4>
+    </div>
+
+    @* Stats Cars *@
+    <div class="row mt-4">
+        <div class="col-md-3 col-sm-6">
+            <div class="bg-danger p-4 roundCorder">
+                <p># of Students</p>
+                <span>5</span>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6 ">
+            <div class="bg-info p-4 roundCorder">
+                <p># of Teachers</p>
+                <span>25</span>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6 ">
+            <div class="bg-success p-4 roundCorder">
+                <p># of Admins</p>
+                <span>15</span>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6 ">
+            <div class="bg-primary p-4 roundCorder">
+                <p># of Users</p>
+                <span>42</span>
+            </div>
+        </div>
+    </div>
+
+    @* charts *@
+    <div class="row mt-4">
+        <div class="col-md-6 col-sm-12">
+            <div class="bg-dark p-4 roundCorder">
+                <p>Student Growth</p>
+                <hr class="bg-white" />
+                <canvas id="growthChart" width="100%" height="45"></canvas>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-12">
+            <div class="bg-dark p-4 roundCorder">
+                <p>Student Performance</p>
+                <hr class="bg-white" />
+                <canvas id="performanceChart" width="100%" height="45"></canvas>
+            </div>
+        </div>
+    </div>
+
+    @* Students Tbl *@
+<div class="roundCorder mt-4">
+    <p>Table Data</p>
+    <hr class="bg-white" />
+    <DIV class="table-responsive">
+        <table id="dataTable" class="table table-bordered" width:100% cellspacing="0">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Position</th>
+                    <th>Office</th>
+                    <th>Age</th>
+                    <th>Start date</th>
+                    <th>Salary</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < 25; i++)
+                {
+                    <tr>
+                        <td>Tiger Nixon</td>
+                        <td>System Architect</td>
+                        <td>Edinburgh</td>
+                        <td>61</td>
+                        <td>2011/04/25</td>
+                        <td>$320,800</td>
+                    </tr>
+                }
+
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>Name</th>
+                    <th>Position</th>
+                    <th>Office</th>
+                    <th>Age</th>
+                    <th>Start date</th>
+                    <th>Salary</th>
+                </tr>
+            </tfoot>
+        </table>
+    </DIV>
+
 </div>
+</div>
+
+@* Load datatable css *@
+<link href="~/DataTables/DataTables-1.10.23/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+@* Load datatable js *@
+@section Scripts{
+    <script src="~/DataTables/DataTables-1.10.23/js/jquery.dataTables.min.js"></script>
+    <script src="~/DataTables/DataTables-1.10.23/js/dataTables.bootstrap4.min.js"></script>
+   
+}
+
+<script>
+
+    $(document).ready(function () {
+        $('#dataTable').DataTable();
+    });
+
+    //charts
+    Chart.defaults.global.defaultFontColor = 'white ';
+    var ctx = document.getElementById('growthChart').getContext('2d');
+    var pChart = document.getElementById('performanceChart').getContext('2d');
+
+    var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June'],
+            datasets: [{
+                label: 'Student Growth',
+                data: [12, 19, 3, 5, 2, 3],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+
+    var myChart = new Chart(pChart, {
+        type: 'pie',
+        data: {
+            labels: ['Jan-June', 'July-November'],
+            datasets: [{
+                label: 'Student Growth',
+                data: [12, 19,],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+        }
+    });
+
+
+</script>
+
+

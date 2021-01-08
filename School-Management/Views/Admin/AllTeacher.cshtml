@@ -1,0 +1,105 @@
+﻿@model IEnumerable<School_Management.Models.TeacherModel>
+
+@{
+    ViewData["Title"] = "AllTeacher";
+}
+
+
+<div class="section mt-3 mr-5">
+    <div class="bg-dark p-3 roundCorder">
+        <h4>All Teachers</h4>
+    </div>
+
+    @* Stats Cars *@
+    <div class="row mt-4">
+        <div class="col-md-4 col-sm-6">
+            <div class="bg-danger p-4 roundCorder">
+                <p># of Teacher</p>
+                <span>5</span>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-6 ">
+            <div class="bg-info p-4 roundCorder">
+                <p># of Cources</p>
+                <span>25</span>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-6 ">
+            <div class="bg-success p-4 roundCorder">
+                <p>Average Teacher per Cource</p>
+                <span>15</span>
+            </div>
+        </div>
+    </div>
+
+    @* Students Tbl *@
+    <div class="roundCorder mt-4">
+        <p>Student Data</p>
+        <hr class="bg-white" />
+        <DIV class="table-responsive">
+            <table id="dataTable" class="table table-bordered" width:100% cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Names)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Id)
+                        </th>
+                        
+                        <th>
+                            Action
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Names)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Id)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                            @Html.ActionLink("Teacher account data", "TeacherAccount", new { id = item.Id })
+                        </td>
+                    </tr>
+                    }
+
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Names)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Id)
+                        </th> 
+                        <th>
+                            Action
+                        </th>
+                    </tr>
+                </tfoot>
+            </table>
+        </DIV>
+
+    </div>
+</div>
+
+@* Load datatable css *@
+<link href="~/DataTables/DataTables-1.10.23/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+@* Load datatable js *@
+@section Scripts{
+    <script src="~/DataTables/DataTables-1.10.23/js/jquery.dataTables.min.js"></script>
+    <script src="~/DataTables/DataTables-1.10.23/js/dataTables.bootstrap4.min.js"></script>
+    <script>
+
+        $(document).ready(function () {
+            $('#dataTable').DataTable();
+        });
+    </script>
+}
+

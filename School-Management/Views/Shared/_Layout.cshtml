@@ -4,38 +4,152 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - School_Management</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+
+    <link rel="stylesheet" href="~/lib/icofont/icofont.css">
+    <script src="~/chart/Chart.js"></script>
+     
+    <link rel="stylesheet" href="~/alertifyjs/css/themes/default.min.css" /> 
+    <link rel="stylesheet" href="~/alertifyjs/css/alertify.min.css" /> 
+    <script src="~/alertifyjs/alertify.min.js"></script>
+
+    @* Load datatable css *@
+    <link href="~/DataTables/DataTables-1.10.23/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+    @* Load datatable js *@
+    @section Scripts{
+        <script src="~/DataTables/DataTables-1.10.23/js/jquery.dataTables.min.js"></script>
+        <script src="~/DataTables/DataTables-1.10.23/js/dataTables.bootstrap4.min.js"></script>
+
+    }
+
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">School_Management</a>
+        @*<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-dark border-bottom box-shadow">
+            <div>
+                <a class="navbar-brand text-white" asp-area="" asp-controller="Home" asp-action="Index">School_Management</a>
+                <button type="button" id="sidebarCollapse" class="btn btn-info">
+                    <i class="fas fa-align-left"></i>
+                    <span>Toggle Sidebar</span>
+                </button>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+
+                <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
                     </ul>
                 </div>
             </div>
+        </nav>*@
+
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+            <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+                <a class="navbar-brand text-white pr-5" asp-area="" asp-controller="Home" asp-action="Index">School_Management</a>
+                <button type="button" id="sidebarCollapse" class="btn bg-dark">
+                    <i class="fas fa-align-left"></i>
+                    <span class="navbar-toggler-icon "></span>
+                </button> 
+            </div>
+            
+            <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Sign Out</a>
+                    </li> 
+                </ul>
+            </div>
         </nav>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+
+    <div> 
+        <div>
+            <main role="main" class="pb-3">
+                <div>
+                    <div class="wrapper">
+                        <!-- Sidebar -->
+                        <nav id="sidebar" class="bg-dark">
+                            <ul class="list-unstyled components pl-2">
+                                <li class="active777">
+                                    <p class="small">ADMIN FUNCTIONS</p>
+                                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="icofont-student-alt pr-2"></i>Manage Students</a>
+                                    <ul class="collapse list-unstyled " id="homeSubmenu">
+                                        <li>
+                                            <a asp-area="" asp-controller="Admin" asp-action="CreateStudent">Add Students</a>
+                                        </li>
+                                        <li>
+                                            <a asp-area="" asp-controller="Admin" asp-action="AllStudents">All Students</a>
+                                        </li>
+                                    </ul>
+
+                                    <a href="#TeachersHandler" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="icofont-teacher pr-2"></i>Manage Teachers</a>
+                                    <ul class="collapse list-unstyled " id="TeachersHandler">
+                                        <li>
+                                            <a asp-area="" asp-controller="Admin" asp-action="CreateTeacher">Add Teachers</a>
+                                        </li>
+                                        <li>
+                                            <a asp-area="" asp-controller="Admin" asp-action="AllTeacher">All Teachers</a>
+                                        </li>
+                                    </ul>
+
+                                    <a asp-area="" asp-controller="Admin" asp-action="Subject"><i class="icofont-notebook pr-2"></i>Manage Subjects</a>
+
+                                    <a href="#TimeTables" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="icofont-table pr-2"></i>Manage TimeTables</a>
+                                    <ul class="collapse list-unstyled " id="TimeTables">
+                                        <li>
+                                            <a href="#">Add TimeTables</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">All TimeTables</a>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                                <div class="mt-3"></div>
+
+                                <li>
+                                    <p class="small">LECTURER FUNCTIONS</p>
+                                    <a asp-area="" asp-controller="Teacher" asp-action="Index"><i class="icofont-dashboard pr-2"></i>Dashboard</a>
+                                    <a asp-area="" asp-controller="Teacher" asp-action="Attendance"><i class="icofont-check-alt pr-2"></i>Attendance</a>
+                                    <a asp-area="" asp-controller="Teacher" asp-action="Assignment"><i class="icofont-notebook pr-2"></i>Assignments</a>
+                                </li>
+
+                                <div class="mt-3"></div>
+
+                                <li>
+                                    <p class="small">STUDENT FUNCTIONS</p>
+                                    <a href="#Attendance" data-toggle="collapse" aria-expanded="false"><i class="icofont-check-alt pr-2"></i>Attendance</a>
+                                    <a href="#Attendance" data-toggle="collapse" aria-expanded="false"><i class="icofont-table pr-2"></i>Classes</a>
+                                    <a href="#Attendance" data-toggle="collapse" aria-expanded="false"><i class="icofont-notebook pr-2"></i>Assignments</a>
+                                </li>
+                            </ul>
+
+                            <div class="pl-3 pb-3 fixed-bottom">
+                                <p class="small text-muted">Signed in as: <p class="">UserName</p></p>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+                <div>
+
+                    @RenderBody()
+                </div>
+            </main>
+        </div>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <footer class="bg-dark footer text-muted">
         <div class="container">
             &copy; 2021 - School_Management - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>

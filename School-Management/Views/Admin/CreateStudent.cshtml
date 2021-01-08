@@ -1,0 +1,85 @@
+﻿@model School_Management.Models.StudentModel
+
+@{
+    ViewData["Title"] = "CreateStudent";
+}
+
+<div class="section mt-3 mr-5">
+    <div class="bg-dark p-3 roundCorder">
+        <h4>CreateStudent</h4>
+    </div>
+
+    <div class="row mt-4">
+
+        <div class="col-md-12">
+            <form asp-action="CreateStudent">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <label>Personal Information</label>
+                <div>
+                    <div class="bg-dark roundCorder">
+                        <div class="input-group p-3">
+                            <input asp-for="FirstName" class="form-control" placeholder="First Name" />
+                            <span asp-validation-for="FirstName" class="text-danger"></span>
+
+                            <span class="input-group-addon m-3"></span>
+
+                            <input asp-for="LastName" class="form-control" placeholder="Last Name" />
+                            <span asp-validation-for="LastName" class="text-danger"></span>
+                        </div>
+                        <div class="input-group p-3">
+                            <input asp-for="PhoneNumber" class="form-control" placeholder="PhoneNumber" />
+                            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+
+                            <span class="input-group-addon m-3"></span>
+
+                            <input asp-for="Email" class="form-control" placeholder="Email" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+                        <div class="input-group p-3">
+                            <input asp-for="Address" class="form-control" placeholder="Address" />
+                            <span asp-validation-for="Address" class="text-danger"></span>
+
+                            <span class="input-group-addon m-3"></span>
+
+                            <input asp-for="Gender" class="form-control" placeholder="Gender" />
+                            <span asp-validation-for="Gender" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <label class="mt-4">Account Information</label>
+                <div>
+                    <div class="bg-dark roundCorder">
+                        <div class="input-group p-3">
+                            <input asp-for="Grade" class="form-control" placeholder="Grade" />
+                            <span asp-validation-for="Grade" class="text-danger"></span>
+
+                            <span class="input-group-addon m-3"></span>
+
+                            <input asp-for="AcademkicYear" class="form-control" placeholder="AcademkicYear" />
+                            <span asp-validation-for="AcademkicYear" class="text-danger"></span>
+                        </div>
+
+                        <div class="input-group p-3">
+                            <input asp-for="Password" class="form-control" placeholder="Password" />
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                  
+                <div class="form-group">
+                    <input type="submit" value="Proceed To Account" class="btn btn-primary w-100 mt-4" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+  
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>
+
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }
