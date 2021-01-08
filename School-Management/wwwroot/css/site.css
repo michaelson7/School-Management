@@ -112,6 +112,7 @@ body {
   color: #fff;
   transition: all 0.3s;
 }
+
 .collapse {
   transition: all 0.5s;
 }
@@ -175,12 +176,30 @@ ul ul a {
   padding-left: 30px !important;
 }
 
-@media (max-width: 768px) {
+.section {
+  padding-right: 20px;
+  padding-left: 300px;
+  transition: all 0.3s;
+}
+
+.section.active {
+  margin-left: -250px;
+}
+
+/* responsive navigation */
+
+@media (max-width: 1000px) {
   #sidebar {
+    margin-left: -250px;
+  }
+  .section {
     margin-left: -250px;
   }
 
   #sidebar.active {
     margin-left: 0;
+  }
+  .section.active {
+    margin-left: 0px;
   }
 }

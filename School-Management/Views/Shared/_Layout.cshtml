@@ -12,7 +12,10 @@
 
     <link rel="stylesheet" href="~/lib/icofont/icofont.css">
     <script src="~/chart/Chart.js"></script>
-
+     
+    <link rel="stylesheet" href="~/alertifyjs/css/themes/default.min.css" /> 
+    <link rel="stylesheet" href="~/alertifyjs/css/alertify.min.css" /> 
+    <script src="~/alertifyjs/alertify.min.js"></script>
 
     @* Load datatable css *@
     <link href="~/DataTables/DataTables-1.10.23/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
@@ -70,91 +73,79 @@
         </nav>
     </header>
 
-    <div class="row">
-        <div class="col-md-2 col-sm-4">
-            @* Side Navigation *@
-            <div class="wrapper">
-                <!-- Sidebar -->
-                <nav id="sidebar" class="bg-dark">
-                    <ul class="list-unstyled components pl-2"> 
-                        <li class="active777">
-                            <p class="small">ADMIN FUNCTIONS</p>
-                            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="icofont-student-alt pr-2"></i>Manage Students</a>
-                            <ul class="collapse list-unstyled " id="homeSubmenu">
-                                <li>
-                                    <a  asp-area="" asp-controller="Admin" asp-action="CreateStudent">Add Students</a>
+    <div> 
+        <div>
+            <main role="main" class="pb-3">
+                <div>
+                    <div class="wrapper">
+                        <!-- Sidebar -->
+                        <nav id="sidebar" class="bg-dark">
+                            <ul class="list-unstyled components pl-2">
+                                <li class="active777">
+                                    <p class="small">ADMIN FUNCTIONS</p>
+                                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="icofont-student-alt pr-2"></i>Manage Students</a>
+                                    <ul class="collapse list-unstyled " id="homeSubmenu">
+                                        <li>
+                                            <a asp-area="" asp-controller="Admin" asp-action="CreateStudent">Add Students</a>
+                                        </li>
+                                        <li>
+                                            <a asp-area="" asp-controller="Admin" asp-action="AllStudents">All Students</a>
+                                        </li>
+                                    </ul>
+
+                                    <a href="#TeachersHandler" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="icofont-teacher pr-2"></i>Manage Teachers</a>
+                                    <ul class="collapse list-unstyled " id="TeachersHandler">
+                                        <li>
+                                            <a asp-area="" asp-controller="Admin" asp-action="CreateTeacher">Add Teachers</a>
+                                        </li>
+                                        <li>
+                                            <a asp-area="" asp-controller="Admin" asp-action="AllTeacher">All Teachers</a>
+                                        </li>
+                                    </ul>
+
+                                    <a asp-area="" asp-controller="Admin" asp-action="Subject"><i class="icofont-notebook pr-2"></i>Manage Subjects</a>
+
+                                    <a href="#TimeTables" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="icofont-table pr-2"></i>Manage TimeTables</a>
+                                    <ul class="collapse list-unstyled " id="TimeTables">
+                                        <li>
+                                            <a href="#">Add TimeTables</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">All TimeTables</a>
+                                        </li>
+                                    </ul>
                                 </li>
+
+                                <div class="mt-3"></div>
+
                                 <li>
-                                    <a href="#">Student Accounts</a>
+                                    <p class="small">LECTURER FUNCTIONS</p>
+                                    <a asp-area="" asp-controller="Teacher" asp-action="Index"><i class="icofont-dashboard pr-2"></i>Dashboard</a>
+                                    <a asp-area="" asp-controller="Teacher" asp-action="Attendance"><i class="icofont-check-alt pr-2"></i>Attendance</a>
+                                    <a asp-area="" asp-controller="Teacher" asp-action="Assignment"><i class="icofont-notebook pr-2"></i>Assignments</a>
                                 </li>
+
+                                <div class="mt-3"></div>
+
                                 <li>
-                                    <a href="#">All Students</a>
+                                    <p class="small">STUDENT FUNCTIONS</p>
+                                    <a href="#Attendance" data-toggle="collapse" aria-expanded="false"><i class="icofont-check-alt pr-2"></i>Attendance</a>
+                                    <a href="#Attendance" data-toggle="collapse" aria-expanded="false"><i class="icofont-table pr-2"></i>Classes</a>
+                                    <a href="#Attendance" data-toggle="collapse" aria-expanded="false"><i class="icofont-notebook pr-2"></i>Assignments</a>
                                 </li>
                             </ul>
 
-                            <a href="#TeachersHandler" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="icofont-teacher pr-2"></i>Manage Teachers</a>
-                            <ul class="collapse list-unstyled " id="TeachersHandler">
-                                <li>
-                                    <a href="#">Add Teachers</a>
-                                </li>
-                                <li>
-                                    <a href="#">All Teachers</a>
-                                </li>
-                            </ul>
-
-                            <a href="#Subjects" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="icofont-notebook pr-2"></i>Manage Subjects</a>
-                            <ul class="collapse list-unstyled " id="Subjects">
-                                <li>
-                                    <a href="#">Add Subjects</a>
-                                </li>
-                                <li>
-                                    <a href="#">All Subjects</a>
-                                </li>
-                            </ul>
-
-                            <a href="#TimeTables" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="icofont-table pr-2"></i>Manage TimeTables</a>
-                            <ul class="collapse list-unstyled " id="TimeTables">
-                                <li>
-                                    <a href="#">Add TimeTables</a>
-                                </li>
-                                <li>
-                                    <a href="#">All TimeTables</a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <div class="mt-3"></div>
-
-                        <li>
-                            <p class="small">LECTURER FUNCTIONS</p>
-                            <a href="#Attendance" data-toggle="collapse" aria-expanded="false"><i class="icofont-check-alt pr-2"></i>Attendance</a>
-                            <a href="#Attendance" data-toggle="collapse" aria-expanded="false"><i class="icofont-notebook pr-2"></i>Assignments</a>
-                        </li>
-
-                        <div class="mt-3"></div>
-
-                        <li>
-                            <p class="small">STUDENT FUNCTIONS</p>
-                            <a href="#Attendance" data-toggle="collapse" aria-expanded="false"><i class="icofont-check-alt pr-2"></i>Attendance</a>
-                            <a href="#Attendance" data-toggle="collapse" aria-expanded="false"><i class="icofont-table pr-2"></i>Classes</a>
-                            <a href="#Attendance" data-toggle="collapse" aria-expanded="false"><i class="icofont-notebook pr-2"></i>Assignments</a>
-                        </li>
-                    </ul>
-
-                    <div class="pl-3 pb-3 fixed-bottom">
-                        <p class="small text-muted">Signed in as: <p class="">UserName</p></p>
+                            <div class="pl-3 pb-3 fixed-bottom">
+                                <p class="small text-muted">Signed in as: <p class="">UserName</p></p>
+                            </div>
+                        </nav>
                     </div>
-                </nav>
+                </div>
+                <div>
 
-                
-            </div>
-        </div>
-        <div class="col-md-10 col-sm-12">
-            <div class="container7">
-                <main role="main" class="pb-3">
                     @RenderBody()
-                </main>
-            </div>
+                </div>
+            </main>
         </div>
     </div>
 

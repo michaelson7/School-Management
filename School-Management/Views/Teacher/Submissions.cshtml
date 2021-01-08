@@ -1,0 +1,163 @@
+﻿@model IEnumerable<School_Management.Models.AssignmentSubmissions>
+
+@{
+    ViewData["Title"] = "Submissions";
+}
+
+
+<div class="section mt-3 ">
+    <div class="bg-dark p-3 roundCorder">
+        <h4>Submissions</h4>
+    </div>
+
+    @* Students Tbl *@
+    <div class="roundCorder mt-4">
+        <p>Assignment Data</p>
+        <hr class="bg-white" />
+        <DIV class="table-responsive">
+            <table id="dataTable" class="table table-bordered" width:100% cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Id)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.StudentId)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.StudentName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.UploadDate)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Grade)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Comments)
+                        </th>
+                        <th>
+                            Action
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Id)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.StudentId)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.StudentName)
+                            </td>
+                            <th>
+                                @Html.DisplayFor(modelItem => item.UploadDate)
+                            </th>
+                            <th>
+                                @Html.DisplayFor(modelItem => item.Grade)
+                            </th>
+                            <th>
+                                @Html.DisplayFor(modelItem => item.Comments)
+                            </th>
+                            <td class="text-center">
+                                <button class="btn btn-primary w-75" data-toggle="modal" data-target="#exampleModal">Grade</button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Id)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.StudentId)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.StudentName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.UploadDate)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Grade)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Comments)
+                        </th>
+                        <th>
+                            Action
+                        </th>
+                    </tr>
+                </tfoot>
+            </table>
+        </DIV>
+
+    </div>
+</div>
+
+@* MOdal *@
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog  modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add Subject</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">StudentID: <span class="text-muted">5</span></label><br />
+                        <label for="exampleFormControlInput1">StudentName: <span class="text-muted">Jane Doe</span></label><br />
+                        <label for="exampleFormControlInput1">Submittion File: <a href="#">45252654252.pdf</a></label>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Grade</label>
+                        <input type="number" class="form-control" id="exampleFormControlInput1">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Comments</label>
+                        <Textarea class="w-100" rows="8"></Textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="subjectSubmittion()">Upload</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@* Load datatable css *@
+<link href="~/DataTables/DataTables-1.10.23/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+@* Load datatable js *@
+@section Scripts{
+    <script src="~/DataTables/DataTables-1.10.23/js/jquery.dataTables.min.js"></script>
+    <script src="~/DataTables/DataTables-1.10.23/js/dataTables.bootstrap4.min.js"></script>
+    <script>
+
+        $(document).ready(function () {
+            $('#dataTable').DataTable();
+        });
+
+        //submittion confirmation
+
+        //TODO- add added subject to database
+        function subjectSubmittion() {
+            alertify.success('Grade Added');
+        }
+    </script>
+}
+
