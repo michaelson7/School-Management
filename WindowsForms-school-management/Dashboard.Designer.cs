@@ -106,8 +106,8 @@
     #endregion
 
     private System.Windows.Forms.Panel navbarpanel;
-    private System.Windows.Forms.Panel contentpanel;
-    private System.Windows.Forms.Panel Sidebarpanel;
+    public System.Windows.Forms.Panel contentpanel;
+    public System.Windows.Forms.Panel Sidebarpanel;
     private System.Windows.Forms.Panel panel4;
     private System.Windows.Forms.Label label1;
   }

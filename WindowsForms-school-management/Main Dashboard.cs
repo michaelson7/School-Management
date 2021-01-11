@@ -17,5 +17,7 @@ namespace WindowsForms_school_management
     {
       InitializeComponent();
     }
+
+   
   }
 }

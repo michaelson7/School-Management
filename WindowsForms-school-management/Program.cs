@@ -16,7 +16,7 @@ namespace WindowsForms_school_management
     {
       Application.EnableVisualStyles();
       Application.SetCompatibleTextRenderingDefault(false);
-      Application.Run(new Main_Dashboard());
+      Application.Run(new LoginForm());
     }
   }
 }
