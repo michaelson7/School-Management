@@ -14,6 +14,7 @@ namespace WindowsForms_school_management
     [STAThread]
     static void Main()
     {
+      //sjdjks
       Application.EnableVisualStyles();
       Application.SetCompatibleTextRenderingDefault(false);
       Application.Run(new LoginForm());
