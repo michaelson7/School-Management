@@ -86,8 +86,8 @@
                                 @Html.DisplayFor(modelItem => item.Grade)
                             </td>
                             <td>
-                                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                                @Html.ActionLink("Student account data", "StudentAccount", new { id= item.StudentID }) 
+                                <a class="btn-link" style="cursor:pointer" data-toggle="modal" data-target="#exampleModal">Edit</a> |
+                                @Html.ActionLink("Student account data", "StudentAccount", new { id = item.StudentID })
                             </td>
                         </tr>
                     }
@@ -123,6 +123,99 @@
 
     </div>
 </div>
+
+@* Edit Student Dialog *@
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog  modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edit Student</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form asp-action="CreateStudent">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <label>Personal Information</label>
+                    <div>
+                        <div class="bg-dark roundCorder">
+                            <div class="p-3">
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="inputEmail4">First Name</label>
+                                        <input name="FirstName" class="form-control" /> 
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="inputEmail4">Last Name</label>
+                                        <input name="LastName" class="form-control" /> 
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="inputEmail4">PhoneNumber</label>
+                                        <input name="PhoneNumber" class="form-control" /> 
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="inputEmail4">Email</label>
+                                        <input name="Email" class="form-control" /> 
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="inputEmail4">Address</label>
+                                        <input name="Address" class="form-control" /> 
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="inputEmail4">Gender</label>
+                                        <select name="Gender" class="form-control">
+                                            <option value="Male">Male</option>
+                                            <option value="Female">Female</option>
+                                        </select> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <label class="mt-4">Account Information</label>
+                    <div>
+                        <div class="bg-dark roundCorder">
+                            <div class="form-row p-3">
+                                <div class="form-group col-md-6">
+                                    <label for="inputEmail4">Grade</label>
+                                    <select name="Grade" class="form-control">
+                                        @for (int i = 0; i <= 12; i++)
+                                        {
+                                            <option value="i">G-@i</option>
+
+                                        }
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="inputEmail4">AcademkicYear</label>
+                                    <input name="AcademkicYear" class="form-control" /> 
+                                </div>
+                                <div class="form-group w-100">
+                                    <label for="inputEmail4">Password</label>
+                                    <input name="Password" class="form-control" type="password" /> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="subjectSubmittion()">Upload</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 
 @* Load datatable css *@
 <link href="~/DataTables/DataTables-1.10.23/css/dataTables.bootstrap4.min.css" rel="stylesheet" />

@@ -1,0 +1,273 @@
+﻿@model IEnumerable<School_Management.Models.AssignmentModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="section mt-3">
+    <div class="bg-dark p-3 roundCorder">
+        <h4>Student Dashboard</h4>
+    </div>
+
+    @* Stats Cars *@
+    <div class="row mt-4">
+        <div class="col-md-3 col-sm-6">
+            <div class="bg-danger p-4 roundCorder">
+                <p># of Subjects</p>
+                <span>5</span>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6 ">
+            <div class="bg-info p-4 roundCorder">
+                <p>Grade & Academic Year</p>
+                <span>G-12 July-August 2020</span>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6 ">
+            <div class="bg-success p-4 roundCorder">
+                <p># of Assignments</p>
+                <span>15</span>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6 ">
+            <div class="bg-primary p-4 roundCorder">
+                <p>Account Balance</p>
+                <span class="text-danger">ZMW 42</span>
+            </div>
+        </div>
+    </div>
+
+    @* charts *@
+    <div class="row mt-4">
+        <div class="col-md-6 col-sm-12">
+            <div class="bg-dark p-4 roundCorder">
+                <p>Average Performance</p>
+                <hr class="bg-white" />
+                <canvas id="growthChart" width="100%" height="45"></canvas>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-12">
+            <div class="bg-dark p-4 roundCorder">
+                <p>Average Attendance</p>
+                <hr class="bg-white" />
+                <canvas id="performanceChart" width="100%" height="45"></canvas>
+            </div>
+        </div>
+    </div>
+
+    @* Students Tbl *@
+    <div class="roundCorder mt-4">
+        <p>Assignments</p>
+        <hr class="bg-white" />
+        <DIV class="table-responsive">
+            <table id="dataTable" class="table table-bordered" width:100% cellspacing="0">
+                <thead>
+                    <tr>
+
+                        <th>
+                            @Html.DisplayNameFor(model => model.Id)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Title)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Subject)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Teacher)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Deadline)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.File)
+                        </th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Id)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Title)
+                            </td>
+                            <th>
+                                @Html.DisplayFor(modelItem => item.Subject)
+                            </th>
+                            <th>
+                                @Html.DisplayFor(modelItem => item.Teacher)
+                            </th>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Deadline)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.File)
+                            </td>
+                            <td>
+                                <a class="btn-link" style="cursor:pointer" data-toggle="modal" data-target="#exampleModal">Submit</a> |
+                                @Html.ActionLink("View Grade", "AssignmentGrade", new { Id = item.Id, StudentId = item.Id })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Id)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Title)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Subject)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Teacher)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Deadline)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.File)
+                        </th>
+                        <th>Action</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </DIV>
+
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog  modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Assignment Submittion</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Student ID</label>
+                        <input type="text" class="form-control text-muted" id="exampleFormControlInput1" value="G-17002" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Subject</label>
+                        <input type="text" class="form-control text-muted" id="exampleFormControlInput1" value="Math" disabled>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect2">Select File</label>
+                        <input type="file" class="form-control" id="exampleFormControlInput1">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="subjectSubmittion()">Upload</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@* Load datatable css *@
+<link href="~/DataTables/DataTables-1.10.23/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+@* Load datatable js *@
+@section Scripts{
+    <script src="~/DataTables/DataTables-1.10.23/js/jquery.dataTables.min.js"></script>
+    <script src="~/DataTables/DataTables-1.10.23/js/dataTables.bootstrap4.min.js"></script>
+
+}
+
+<script>
+    //load chart
+    $(document).ready(function () {
+        $('#dataTable').DataTable();
+    });
+
+    //submit project
+    function subjectSubmittion() {
+        alertify.success('Assignment Submitted');
+    }
+
+    //charts
+    Chart.defaults.global.defaultFontColor = 'white ';
+    var ctx = document.getElementById('growthChart').getContext('2d');
+    var pChart = document.getElementById('performanceChart').getContext('2d');
+
+    var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June'],
+            datasets: [{
+                label: 'Student Performance [July-November]',
+                data: [89, 70, 49, 80, 45, 92],
+                backgroundColor: [
+                    'rgba(54, 162, 235, 0.2)',
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 0
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+
+    var myChart = new Chart(pChart, {
+        type: 'bar',
+        data: {
+            labels: ['Math', 'English', 'Science', 'Geography'],
+            datasets: [{
+                label: '# of Students Per Subject',
+                data: [32, 19, 53, 45],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+</script>
+

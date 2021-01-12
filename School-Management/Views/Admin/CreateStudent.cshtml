@@ -18,32 +18,46 @@
                 <label>Personal Information</label>
                 <div>
                     <div class="bg-dark roundCorder">
-                        <div class="input-group p-3">
-                            <input asp-for="FirstName" class="form-control" placeholder="First Name" />
-                            <span asp-validation-for="FirstName" class="text-danger"></span>
-
-                            <span class="input-group-addon m-3"></span>
-
-                            <input asp-for="LastName" class="form-control" placeholder="Last Name" />
-                            <span asp-validation-for="LastName" class="text-danger"></span>
-                        </div>
-                        <div class="input-group p-3">
-                            <input asp-for="PhoneNumber" class="form-control" placeholder="PhoneNumber" />
-                            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
-
-                            <span class="input-group-addon m-3"></span>
-
-                            <input asp-for="Email" class="form-control" placeholder="Email" />
-                            <span asp-validation-for="Email" class="text-danger"></span>
-                        </div>
-                        <div class="input-group p-3">
-                            <input asp-for="Address" class="form-control" placeholder="Address" />
-                            <span asp-validation-for="Address" class="text-danger"></span>
-
-                            <span class="input-group-addon m-3"></span>
-
-                            <input asp-for="Gender" class="form-control" placeholder="Gender" />
-                            <span asp-validation-for="Gender" class="text-danger"></span>
+                        <div class="p-3">
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="inputEmail4">First Name</label>
+                                    <input asp-for="FirstName" class="form-control" />
+                                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="inputEmail4">Last Name</label>
+                                    <input asp-for="LastName" class="form-control" />
+                                    <span asp-validation-for="LastName" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="inputEmail4">PhoneNumber</label>
+                                    <input asp-for="PhoneNumber" class="form-control" />
+                                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="inputEmail4">Email</label>
+                                    <input asp-for="Email" class="form-control" />
+                                    <span asp-validation-for="Email" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="inputEmail4">Address</label>
+                                    <input asp-for="Address" class="form-control" />
+                                    <span asp-validation-for="Address" class="text-danger"></span>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="inputEmail4">Gender</label>
+                                    <select asp-for="Gender" class="form-control">
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                    </select>
+                                    <span asp-validation-for="Gender" class="text-danger"></span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -51,35 +65,43 @@
                 <label class="mt-4">Account Information</label>
                 <div>
                     <div class="bg-dark roundCorder">
-                        <div class="input-group p-3">
-                            <input asp-for="Grade" class="form-control" placeholder="Grade" />
-                            <span asp-validation-for="Grade" class="text-danger"></span>
+                        <div class="form-row p-3">
+                            <div class="form-group col-md-6">
+                                <label for="inputEmail4">Grade</label>
+                                <select asp-for="Grade" class="form-control">
+                                    @for (int i = 0; i <= 12; i++)
+                                    {
+                                        <option value="i">G-@i</option>
 
-                            <span class="input-group-addon m-3"></span>
-
-                            <input asp-for="AcademkicYear" class="form-control" placeholder="AcademkicYear" />
-                            <span asp-validation-for="AcademkicYear" class="text-danger"></span>
-                        </div>
-
-                        <div class="input-group p-3">
-                            <input asp-for="Password" class="form-control" placeholder="Password" />
-                            <span asp-validation-for="Password" class="text-danger"></span>
+                                    }
+                                </select>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="inputEmail4">AcademkicYear</label>
+                                <input asp-for="AcademkicYear" class="form-control" />
+                                <span asp-validation-for="AcademkicYear" class="text-danger"></span>
+                            </div>
+                            <div class="form-group w-100">
+                                <label for="inputEmail4">Password</label>
+                                <input asp-for="Password" class="form-control" type="password" />
+                                <span asp-validation-for="Password" class="text-danger"></span>
+                            </div>
                         </div>
                     </div>
                 </div>
-                  
+
                 <div class="form-group">
                     <input type="submit" value="Proceed To Account" class="btn btn-primary w-100 mt-4" />
-                </div>
+                </div> 
             </form>
         </div>
     </div>
 </div>
-  
-    <div>
-        <a asp-action="Index">Back to List</a>
-    </div>
 
-    @section Scripts {
-        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-    }
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

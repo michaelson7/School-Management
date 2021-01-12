@@ -37,8 +37,6 @@ namespace School_Management.Models
         public string Password { get; set; }
 
         [Display(Name = "Gender")]
-        [Required]
-        [StringLength(100, MinimumLength = 2)]
         public string Gender { get; set; }
 
         [Display(Name = "Local Address")]

@@ -88,37 +88,47 @@ namespace School_Management.Controllers
         {
             //load students
             List<StudentModel> student = new List<StudentModel>();
-            student.Add(new StudentModel
+            for (int i = 0; i < 15; i++)
             {
-                StudentID = 5,
-                FirstName = "Anita Jones",
-                LastName = "Daka",
-                PhoneNumber = "555-1212",
-                Email = "Anitajones2077@hotmail.com",
-                Gender = "Female",
-                Address = "Woodlands chalala #25780",
-                Grade = "12-A",
-                AcademkicYear = "July-November 2021",
-                Password = ""
-            });
+                student.Add(new StudentModel
+                {
+                    StudentID = i,
+                    FirstName = "Anita Jones",
+                    LastName = "Daka",
+                    PhoneNumber = "555-1212",
+                    Email = "Anitajones2077@hotmail.com",
+                    Gender = "Female",
+                    Address = "Woodlands chalala #25780",
+                    Grade = "12-A",
+                    AcademkicYear = "July-November 2021",
+                    Password = ""
+                });
+            }
+           
 
             //load lecturer subjects
             List<SubjectModel> subject = new List<SubjectModel>();
-            subject.Add(new SubjectModel
+            for (int i = 0; i < 12; i++)
             {
-                Id = 5,
-                Title = "Math",
-                Grade = $"G-{2}"
-            });
+                subject.Add(new SubjectModel
+                {
+                    Id = i,
+                    Title = "Math",
+                    Grade = $"G-{2}"
+                });
+            }
+           
 
             //load grade
             List<GradeModel> grade = new List<GradeModel>();
-            grade.Add(new GradeModel
+            for (int i = 0; i < 12; i++)
             {
-                Id = 5,
-                Title = "Math"
-            });
-
+                grade.Add(new GradeModel
+                {
+                    Id = i,
+                    Title = $"G-{i}"
+                });
+            } 
 
             AttendanceModel attendance = new AttendanceModel
             {

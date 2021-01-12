@@ -89,9 +89,8 @@
                                 @Html.DisplayFor(modelItem => item.File)
                             </td>
                             <td>
-                                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                                @Html.ActionLink("Submissions", "Submissions", new {  id=item.Id  }) |
-                                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                                <a class="btn-link" style="cursor:pointer" data-toggle="modal" data-target="#exampleModal">Edit</a> |
+                                @Html.ActionLink("Submissions", "Submissions", new { id = item.Id })
                             </td>
                         </tr>
                     }
@@ -164,6 +163,8 @@
         </div>
     </div>
 </div>
+
+
 
 @* Load datatable css *@
 <link href="~/DataTables/DataTables-1.10.23/css/dataTables.bootstrap4.min.css" rel="stylesheet" />

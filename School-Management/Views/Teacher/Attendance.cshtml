@@ -4,30 +4,151 @@
     ViewData["Title"] = "Attendance";
 }
 
-<h1>Attendance</h1>
 
-<h4>AttendanceModel</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Attendance">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Id" class="control-label"></label>
-                <input asp-for="Id" class="form-control" />
-                <span asp-validation-for="Id" class="text-danger"></span>
+<div class="section mt-3 ">
+    <div class="bg-dark p-3 roundCorder">
+        <h4>Attendance</h4>
+    </div>
+
+    @* Stats Cars *@
+    <div class="row mt-4">
+        <div class="col-md-4 col-sm-6">
+            <div class="bg-danger p-4 roundCorder">
+                <p># of Subjetcs</p>
+                <span>5</span>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+        </div>
+        <div class="col-md-4 col-sm-6 ">
+            <div class="bg-info p-4 roundCorder">
+                <p># of Teachers</p>
+                <span>25</span>
             </div>
-        </form>
+        </div>
+        <div class="col-md-4 col-sm-6 ">
+            <div class="bg-success p-4 roundCorder">
+                <p>Average Teacher per Subjetcs</p>
+                <span>15</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-4">
+        <div class="bg-dark roundCorder">
+            <div class="form-row p-3">
+                <div class="form-group col-md-6">
+                    <label for="inputEmail4">Select Grade</label>
+                    <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                        @foreach (var item in Model.Grades)
+                        {
+                            <option value="@item.Value">@item.Text</option>
+                        } 
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputEmail4">Select Subject</label>
+                    <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                        @foreach (var item in Model.Subject)
+                        {
+                            <option value="@item.Value">@item.Text</option>
+                        }
+                    </select>
+                </div>
+                <div class="text-center w-100 mt4">
+                    <button class="btn btn-primary w-100">Fetch Students</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    @* Students Tbl *@
+    <div class="roundCorder mt-4">
+        <p>Students</p>
+        <hr class="bg-white" />
+        <DIV class="table-responsive">
+            <table id="dataTable" class="table table-bordered" width:100% cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>
+                            StudentID
+                        </th>
+                        <th>
+                            Name
+                        </th>
+                        <th>
+                            Present
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Student)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Value)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Text)
+                            </td>
+                            <td>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="exampleRadios[@item.Value]" id="exampleRadios1" value="option1" checked>
+                                    <label class="form-check-label" for="exampleRadios1">
+                                        Present
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="exampleRadios[@item.Value]" id="exampleRadios2" value="option2">
+                                    <label class="form-check-label" for="exampleRadios2">
+                                        Abscent
+                                    </label>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th>
+                            StudentID
+                        </th>
+                        <th>
+                            Name
+                        </th>
+                        <th>
+                            Present
+                        </th>
+                    </tr>
+                </tfoot>
+            </table>
+
+            <div class="text-center w-100 mt-4">
+                <button class="btn btn-primary w-100" onclick="submitAttendance()">Update Record</button>
+            </div>
+
+        </DIV>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+@* Load datatable css *@
+<link href="~/DataTables/DataTables-1.10.23/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+@* Load datatable js *@
+@section Scripts{
+    <script src="~/DataTables/DataTables-1.10.23/js/jquery.dataTables.min.js"></script>
+    <script src="~/DataTables/DataTables-1.10.23/js/dataTables.bootstrap4.min.js"></script>
+    <script>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+        $(document).ready(function () {
+            $('#dataTable').DataTable();
+        });
+
+        function submitAttendance() {
+            alertify.success("Attendance form submitted");
+        }
+
+    </script>
 }
+
+
+

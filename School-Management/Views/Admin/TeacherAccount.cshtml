@@ -1,4 +1,4 @@
-﻿@model IEnumerable<School_Management.Models.TeacherModel>
+﻿@model School_Management.Models.TeacherModel
 
 @{
     ViewData["Title"] = "TeacherAccount";
@@ -11,38 +11,61 @@
     <p class="mt-3">
         <a asp-action="CreateTeacher">Create New Teacher</a>
     </p>
-</div>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Names)
-            </th>
-            <th>
+    <div class=" mt-4">
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
                 @Html.DisplayNameFor(model => model.Id)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Names)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
-        }
-    </tbody>
-</table>
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(modelItem => Model.Id)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Names)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(modelItem => Model.Names)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.DOB)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(modelItem => Model.DOB)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(modelItem => Model.Email)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.PhoneNumber)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(modelItem => Model.PhoneNumber)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Qualification)
+            </dt>
+            <dd class="col-sm-10">
+                <a href="@Html.DisplayFor(modelItem => Model.Qualification)" class="btn-link" style="cursor:pointer">PDF File</a>
 
-  
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.SubjectsTeaching)
+            </dt>
+            <dd class="col-sm-10">
+                @foreach (var item in Model.SubjectsTeaching)
+                {
+                <div>
+                    @Html.DisplayFor(modelItem => item.Text)
+                </div>
+                    
+                    
+                }
+            </dd> 
+        </dl>
+    </div>
+
+</div>

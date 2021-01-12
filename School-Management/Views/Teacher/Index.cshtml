@@ -103,15 +103,14 @@
                                 @Html.DisplayFor(modelItem => item.File)
                             </td>
                             <td>
-                                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                                @Html.ActionLink("Submissions", "Details", new { /* id=item.PrimaryKey */ }) |
-                                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                                <a class="btn-link" style="cursor:pointer" data-toggle="modal" data-target="#exampleModal">Edit</a> |
+                                @Html.ActionLink("Submissions", "Submissions", new { id = item.Id })
                             </td>
                         </tr>
                     }
                 </tbody>
                 <tfoot>
-                    <tr> 
+                    <tr>
                         <th>
                             @Html.DisplayNameFor(model => model.Id)
                         </th>
@@ -133,6 +132,52 @@
             </table>
         </DIV>
 
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog  modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edit Assignment</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form asp-action="CreateAssignment">
+                     
+                    <div class="form-group">
+                        <label  class="control-label">Title</label>
+                        <input name="Title" class="form-control" /> 
+                    </div>
+                    <div class="form-group">
+                        <label  class="control-label">Grade</label>
+                        <select  class="form-control">
+                            @for (int i = 0; i <= 12; i++)
+                            {
+                                <option value="i">G-@i</option>
+
+                            }
+                        </select> 
+                    </div>
+                    <div class="form-group">
+                        <label  class="control-label">Deadline</label>
+                        <input name="Deadline" class="form-control" type="date" /> 
+                    </div>
+                    <div class="form-group">
+                        <label  class="control-label">File</label>
+                        <input name="File" class="form-control" type="file" /> 
+                    </div> 
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="subjectSubmittion()">Upload</button>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -222,4 +267,3 @@
     });
 </script>
 
- 

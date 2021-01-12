@@ -11,7 +11,8 @@ namespace School_Management.Models
         public string Title { get; set; }
         public string Grade { get; set; }
         public string Deadline { get; set; }
-
+        public string Subject { get; set; }
+        public string  Teacher { get; set; }
         public string File { get; set; }
     }
 }
