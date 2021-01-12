@@ -218,6 +218,7 @@
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(800, 557);
       this.Name = "LoginForm";
+      this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
       this.Text = "LoginForm";
       this.Sidebarpanel.ResumeLayout(false);
       this.Sidebarpanel.PerformLayout();
