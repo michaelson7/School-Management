@@ -1,4 +1,4 @@
-﻿@model IEnumerable<School_Management.Models.SubjectModel>
+﻿@model School_Management.Models.TeacherSubject
 
 @{
     ViewData["Title"] = "Subject";
@@ -48,13 +48,13 @@
                             @Html.DisplayNameFor(model => model.Id)
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.Title)
+                            @Html.DisplayNameFor(model => model.Subjects)
                         </th>
                         <th>
                             @Html.DisplayNameFor(model => model.Grade)
                         </th>
                         <th>
-                            Teacher
+                            @Html.DisplayNameFor(model => model.Teachers)
                         </th>
                         <th>
                             Action
@@ -62,24 +62,24 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var item in Model)
+                    @for (int i = 0; i < Model.Subjects.Count(); i++)
                     {
                         <tr>
                             <td>
-                                @Html.DisplayFor(modelItem => item.Id)
+                                @Html.DisplayFor(modelItem => i)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.Title)
+                                @Html.DisplayFor(modelItem => Model.Subjects.ElementAt(i).Text)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.Grade)
+                                @Html.DisplayFor(modelItem => Model.Grade.ElementAt(i).Text)
                             </td>
                             <th>
-                                @Html.DisplayFor(modelItem => item.Teacher)
+                                @Html.DisplayFor(modelItem => Model.Teachers.ElementAt(i).Text)
                             </th>
                             <td>
                                 @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                                @Html.ActionLink("Add Teachers", "TeacherAccount", new { id = item.Id })
+                                @Html.ActionLink("Add Teachers", "CreateTeacher", new { id = Model.Teachers.ElementAt(i).Value })
                             </td>
                         </tr>
                     }
@@ -90,13 +90,13 @@
                             @Html.DisplayNameFor(model => model.Id)
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.Title)
+                            @Html.DisplayNameFor(model => model.Subjects)
                         </th>
                         <th>
                             @Html.DisplayNameFor(model => model.Grade)
                         </th>
                         <th>
-                            Teacher
+                            @Html.DisplayNameFor(model => model.Teachers)
                         </th>
                         <th>
                             Action

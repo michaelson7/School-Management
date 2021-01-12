@@ -12,9 +12,9 @@
 
     <link rel="stylesheet" href="~/lib/icofont/icofont.css">
     <script src="~/chart/Chart.js"></script>
-     
-    <link rel="stylesheet" href="~/alertifyjs/css/themes/default.min.css" /> 
-    <link rel="stylesheet" href="~/alertifyjs/css/alertify.min.css" /> 
+
+    <link rel="stylesheet" href="~/alertifyjs/css/themes/default.min.css" />
+    <link rel="stylesheet" href="~/alertifyjs/css/alertify.min.css" />
     <script src="~/alertifyjs/alertify.min.js"></script>
 
     @* Load datatable css *@
@@ -30,29 +30,29 @@
 <body>
     <header>
         @*<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-dark border-bottom box-shadow">
-            <div>
-                <a class="navbar-brand text-white" asp-area="" asp-controller="Home" asp-action="Index">School_Management</a>
-                <button type="button" id="sidebarCollapse" class="btn btn-info">
-                    <i class="fas fa-align-left"></i>
-                    <span>Toggle Sidebar</span>
-                </button>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+                <div>
+                    <a class="navbar-brand text-white" asp-area="" asp-controller="Home" asp-action="Index">School_Management</a>
+                    <button type="button" id="sidebarCollapse" class="btn btn-info">
+                        <i class="fas fa-align-left"></i>
+                        <span>Toggle Sidebar</span>
+                    </button>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
 
-                <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
+                    <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+                        <ul class="navbar-nav flex-grow-1">
+                            <li class="nav-item">
+                                <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-        </nav>*@
+            </nav>*@
 
         <nav class="navbar navbar-expand-md navbar-dark bg-dark">
             <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
@@ -60,20 +60,20 @@
                 <button type="button" id="sidebarCollapse" class="btn bg-dark">
                     <i class="fas fa-align-left"></i>
                     <span class="navbar-toggler-icon "></span>
-                </button> 
+                </button>
             </div>
-            
+
             <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="#">Sign Out</a>
-                    </li> 
+                    </li>
                 </ul>
             </div>
         </nav>
     </header>
 
-    <div> 
+    <div>
         <div>
             <main role="main" class="pb-3">
                 <div>
@@ -129,9 +129,10 @@
 
                                 <li>
                                     <p class="small">STUDENT FUNCTIONS</p>
-                                    <a href="#Attendance" data-toggle="collapse" aria-expanded="false"><i class="icofont-check-alt pr-2"></i>Attendance</a>
-                                    <a href="#Attendance" data-toggle="collapse" aria-expanded="false"><i class="icofont-table pr-2"></i>Classes</a>
-                                    <a href="#Attendance" data-toggle="collapse" aria-expanded="false"><i class="icofont-notebook pr-2"></i>Assignments</a>
+                                    <a asp-area="" asp-controller="Student" asp-action="Index"><i class="icofont-dashboard pr-2"></i>Dashboard</a>
+                                    <a asp-area="" asp-controller="Student" asp-action="Attendance"><i class="icofont-check-alt pr-2"></i>Attendance</a>
+                                    <a asp-area="" asp-controller="Student" asp-action="Classes"><i class="icofont-table pr-2"></i>Classes</a>
+                                    <a asp-area="" asp-controller="Student" asp-action="Assignment"><i class="icofont-notebook pr-2"></i>Assignments</a>
                                 </li>
                             </ul>
 
@@ -142,18 +143,20 @@
                     </div>
                 </div>
                 <div>
-
                     @RenderBody()
                 </div>
             </main>
         </div>
     </div>
 
-    <footer class="bg-dark footer text-muted">
-        <div class="container">
+    <div class="section mt-4 ">
+        <footer class="bg-dark mr-4 roundCorder footer text-muted ">
             &copy; 2021 - School_Management - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
+        </footer>
+    </div>
+
+
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

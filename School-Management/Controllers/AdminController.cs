@@ -21,7 +21,8 @@ namespace School_Management.Controllers
         public ActionResult StudentAccount(int id)
         {
             List<StudentModel> student = new List<StudentModel>();
-            student.Add(new StudentModel {
+            student.Add(new StudentModel
+            {
                 StudentID = id,
                 FirstName = "Anita Jones",
                 LastName = "Daka",
@@ -32,7 +33,7 @@ namespace School_Management.Controllers
                 Grade = "12-A",
                 AcademkicYear = "July-November 2021",
                 Password = ""
-        });
+            });
 
             return View(student);
         }
@@ -70,7 +71,7 @@ namespace School_Management.Controllers
 
         // POST: Post student
         [HttpPost]
-        [ValidateAntiForgeryToken] 
+        [ValidateAntiForgeryToken]
         public ActionResult CreateStudent(IFormCollection collection)
         {
             try
@@ -106,12 +107,27 @@ namespace School_Management.Controllers
 
         public ActionResult TeacherAccount(int id)
         {
-            List<TeacherModel> teacher = new List<TeacherModel>();
-            teacher.Add(new TeacherModel
+            List<SubjectModel> subject = new List<SubjectModel>();
+            for (int i = 0; i < 4; i++)
             {
+                subject.Add(new SubjectModel
+                {
+                    Id = i,
+                    Title = "Math",
+                    Grade = $"G-{i}"
+                });
+            }
+
+            TeacherModel teacher = new TeacherModel {
                 Id = id,
-                Names = "Edgla Allan Poal" 
-            });
+                Names = "Edgla Allan Poal",
+                DOB = "5/10/1969",
+                Qualification = "{FilePath.php}",
+                Email = "Edgar@gmail.com",
+                PhoneNumber = "+260 524 225",
+                SubjectsTeaching = subject.Select(x => new SelectListItem { Text = x.Title, Value = x.Id.ToString() }).ToList()
+            };
+            
 
             return View(teacher);
         }
@@ -136,7 +152,7 @@ namespace School_Management.Controllers
         public ActionResult Subject()
         {
             List<TeacherModel> teacher = new List<TeacherModel>();
-            for (int i = 0; i < 2; i++)
+            for (int i = 0; i < 5; i++)
             {
                 teacher.Add(new TeacherModel
                 {
@@ -146,19 +162,37 @@ namespace School_Management.Controllers
             }
 
             List<SubjectModel> subject = new List<SubjectModel>();
-           for (int i = 0; i < 20; i++)
+            for (int i = 0; i < 5; i++)
             {
-                subject.Add(new SubjectModel 
+                subject.Add(new SubjectModel
                 {
                     Id = i,
                     Title = "Math",
-                    Grade = $"G-{i}", 
-                    Teacher = teacher.Select(x => new SelectListItem { Text = x.Names, Value = x.Id.ToString() }).ToList()
-            }) ;  
+                    Grade = $"G-{i}"
+                });
 
             }
 
-            return View(subject);
+            List<GradeModel> grade = new List<GradeModel>();
+            for (int i = 0; i < 5; i++)
+            {
+                grade.Add(new GradeModel
+                {
+                    Id = i,
+                    Title = $"G-{i}" 
+                });
+
+            }
+
+            TeacherSubject ts = new TeacherSubject
+            {
+                Subjects = subject.Select(x => new SelectListItem { Text = x.Title, Value = x.Id.ToString() }).ToList(),
+                Teachers = teacher.Select(x => new SelectListItem { Text = x.Names, Value = x.Id.ToString() }).ToList(),
+                Grade = grade.Select(x => new SelectListItem { Text = x.Title, Value = x.Id.ToString() }).ToList()
+            };
+
+
+            return View(ts); 
         }
 
         // POST: Post student
